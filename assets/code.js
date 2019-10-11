@@ -87,6 +87,17 @@ function quizTimer() {
     }, 1000);
 }
 
+// render answer feedback
+function answerFeedback(message) {
+    console.log(message);
+    let feedbackEl=document.querySelector("#feedback");
+    feedbackEl.textContent=message;
+    feedbackInterval = setInterval(function () {
+        feedbackEl.textContent="";
+        clearInterval(feedbackInterval);
+    }, 1500);
+}
+
 //render end screen 
 function renderEndScreen(){
     currentScreen="endScreen";
@@ -217,13 +228,11 @@ function startCodeQuiz(event) {
             //evaluate answer
             if (event.target.textContent===questions[questionIndex].answer){
                 //positive answer feedback to screen
-                feedbackEl.textContent="Correct!";
-                console.log("correct answer");
+                answerFeedback("Correct!");
             } else {
                 //negative answer feedback to screen
-                // let feedbackEl=document.querySelector("#feedback");
-                feedbackEl.textContent="Incorrect!";
-                console.log("wrong answer");
+                answerFeedback("Correct!");
+                //increment wrongAnswers
                 wrongAnswers++;
             }
             //iterate questionIndex 
