@@ -56,7 +56,7 @@ function renderStartScreen(){
     } else {
         startPageHTML+=`Start Quiz </button>`
     }
-    //set body to start screen html
+    //set quizEl to start screen html
     let quizEl=document.querySelector("#quiz");
     quizEl.innerHTML=startPageHTML;
     //select start button
@@ -128,7 +128,7 @@ function renderEndScreen(){
             </div>   
         </form>    
         `;  
-    // set body to end screen html   
+    // set quizEl to end screen html   
     let quizEl=document.querySelector("#quiz"); 
     quizEl.innerHTML=doneScreenHTML;
     //high score submit button event listener to save initials and score to local storage
@@ -197,11 +197,24 @@ function renderHighScoreScreen() {
     if (localStorage.length===0){
         highScoreScreenHTML+= `<p id="noScores">No scores to display.</p>`;
     }
-    //append list end tag to html
-    highScoreScreenHTML+= `</ul>`; 
-    // set body to score screen html   
+    //append list end tag and clear button to html
+    highScoreScreenHTML+= `
+        </ul>
+        <br>
+        <button type="button" id="clearScores">Clear Scores</button>
+        `; 
+    // set quizEl to score screen html   
     let quizEl=document.querySelector("#quiz"); 
     quizEl.innerHTML=highScoreScreenHTML;    
+    // event listener for clearScores button
+    let clearScoresEl=document.querySelector("#clearScores");
+    clearScoresEl.addEventListener("click", function(){
+        //clear local storage
+        localStorage.clear();
+        console.log("clearScores");
+        //re-render high score screen
+        renderHighScoreScreen();
+    });
 }
 
 // start code quiz 
