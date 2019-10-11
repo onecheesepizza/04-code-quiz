@@ -172,31 +172,31 @@ function renderHighScoreScreen() {
         <ul id="highScoresList">`
     //initialize unsorted score array
     let unsortedScore=[];
-        //loop over high scores and generate list html, if localStorage.length is >0
-        for (let i=0;i<localStorage.length;i++){
-            //create key value to read localStorage
-            let scoreIndex="scoreIndex"+i;
-            //get parsed score object from localStorage
-            let singleScore=JSON.parse(localStorage.getItem(scoreIndex));
-            //add score object to array to be sorted later
-            unsortedScore.push(singleScore);
-            console.log(singleScore);
-        };
-        //sort scores and store in new array
-        let sortedScore=unsortedScore.sort(function(a, b){
-            return a.score-b.score
-        })
-        //reverse sort to descending
-        sortedScore.reverse();
-        //display sorted scores to screen
-        for (let i=0;i<sortedScore.length;i++){
-            //append new list element to html
-            highScoreScreenHTML+=`<li data-index=${i}>${sortedScore[i].initials}: ${sortedScore[i].score}</li>`
-        }
-        //display 'no scores' message if localStorage is empty (localStorage.length is 0)
-        if (localStorage.length===0){
-            highScoreScreenHTML+= `<p id="noScores">No scores to display.</p>`;
-        }
+    //loop over high scores and generate list html, if localStorage.length is >0
+    for (let i=0;i<localStorage.length;i++){
+        //create key value to read localStorage
+        let scoreIndex="scoreIndex"+i;
+        //get parsed score object from localStorage
+        let singleScore=JSON.parse(localStorage.getItem(scoreIndex));
+        //add score object to array to be sorted later
+        unsortedScore.push(singleScore);
+        console.log(singleScore);
+    };
+    //sort scores and store in new array
+    let sortedScore=unsortedScore.sort(function(a, b){
+        return a.score-b.score
+    })
+    //reverse sort to descending
+    sortedScore.reverse();
+    //display sorted scores to screen
+    for (let i=0;i<sortedScore.length;i++){
+        //append new list element to html
+        highScoreScreenHTML+=`<li data-index=${i}>${sortedScore[i].initials}: ${sortedScore[i].score}</li>`
+    }
+    //display 'no scores' message if localStorage is empty (localStorage.length is 0)
+    if (localStorage.length===0){
+        highScoreScreenHTML+= `<p id="noScores">No scores to display.</p>`;
+    }
     //append list end tag to html
     highScoreScreenHTML+= `</ul>`; 
     // set body to score screen html   
