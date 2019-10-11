@@ -211,10 +211,10 @@ function startCodeQuiz(event) {
             <h1>Question ${questionIndex + 1}</h1
             <p>${questions[questionIndex].title}</p>
             <ul id="answers">
-            <li>${questions[questionIndex].choices[0]}</li>
-            <li>${questions[questionIndex].choices[1]}</li>
-            <li>${questions[questionIndex].choices[2]}</li>
-            <li>${questions[questionIndex].choices[3]}</li>
+            <li><button type="button">${questions[questionIndex].choices[0]}</button></li>
+            <li><button type="button">${questions[questionIndex].choices[1]}</button></li>
+            <li><button type="button">${questions[questionIndex].choices[2]}</button></li>
+            <li><button type="button">${questions[questionIndex].choices[3]}</button></li>
             </ul>
             `;   
         //set body to quiz html
