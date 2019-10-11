@@ -14,6 +14,7 @@ function generateStructure(){
     bodyEl.innerHTML=`
     <div id="header"></div>
     <div id="quiz"></div>
+    <div id="feedback"></div>
     `;
 }
 
@@ -195,13 +196,20 @@ function startCodeQuiz(event) {
         //set body to quiz html
         let quizEl=document.querySelector("#quiz");
         quizEl.innerHTML=codeQuizHTML;
+        //select feedback element for eval feedback below
+        let feedbackEl=document.querySelector("#feedback");
         //add event listener for answer selection that also runs answer evaluation
         let answersEl=document.querySelector("#answers");
         answersEl.addEventListener("click", function(event) {
             //evaluate answer
             if (event.target.textContent===questions[questionIndex].answer){
+                //positive answer feedback to screen
+                feedbackEl.textContent="Correct!";
                 console.log("correct answer");
             } else {
+                //negative answer feedback to screen
+                // let feedbackEl=document.querySelector("#feedback");
+                feedbackEl.textContent="Incorrect!";
                 console.log("wrong answer");
                 wrongAnswers++;
             }
