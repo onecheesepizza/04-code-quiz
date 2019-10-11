@@ -98,7 +98,7 @@ function renderEndScreen(){
         <form>
             <div>
             <label for="player-initials">Enter your initials: </label>
-            <input type="text" id="player-initials" name="player-initials">
+            <input type="text" maxlength="3" id="player-initials" name="player-initials">
             </div>
             <div class="button">
             <button id="scoreSubmit" type="submit">Submit</button>
@@ -108,26 +108,32 @@ function renderEndScreen(){
     // set body to end screen html   
     let quizEl=document.querySelector("#quiz"); 
     quizEl.innerHTML=doneScreenHTML;
-    //high score submit button event listener
+    //high score submit button event listener to save initials and score to local storage
     let submitEl=document.querySelector("#scoreSubmit"); 
     submitEl.addEventListener("click", function(event) {
         event.preventDefault();
-        //save initials and score to local storage
-        let initialVal=document.querySelector("#player-initials").value;
-        // let scoreIndex=0;
-        let scoreData= {
-            initials: initialVal, 
-            score: quizScore
-        };
-        //serialize score object for localStorage
-        let scoreDataSerial=JSON.stringify(scoreData);
-        console.log(scoreDataSerial);
-        //create key value for localStorage
-        let scoreIndex="scoreIndex"+window.localStorage.length;
-        //write to localStorage
-        window.localStorage.setItem(scoreIndex, scoreDataSerial);
-        //render high score screen
-        renderHighScoreScreen();
+        //get initials input and makes uppercase. 
+        let initialVal=document.querySelector("#player-initials").value.toUpperCase();
+        //validate initials input (alpha chars only)
+        if (initialVal.match(/^[A-Za-z]+$/)){
+            //create scoreData object
+            let scoreData= {
+                initials: initialVal, 
+                score: quizScore
+            };
+            //serialize score object for localStorage
+            let scoreDataSerial=JSON.stringify(scoreData);
+            console.log(scoreDataSerial);
+            //create key value for localStorage (scoreIndex#)
+            let scoreIndex="scoreIndex"+window.localStorage.length;
+            //write to localStorage
+            window.localStorage.setItem(scoreIndex, scoreDataSerial);
+            //render high score screen
+            renderHighScoreScreen();
+        //invalid form input condition
+        }else {
+            alert("Please enter valid initials.");
+        }
     });
 }
 
@@ -141,7 +147,7 @@ function renderHighScoreScreen() {
     let highScoreScreenHTML = `
         <h1>High Scores</h1
         <ul id="highScoresList">`
-        //loop over high scores and generate list html
+        //loop over high scores and generate list html, if localStorage.length is >0
         for (let i=0;i<localStorage.length;i++){
             //create key value to read localStorage
             let scoreIndex="scoreIndex"+i;
@@ -151,6 +157,10 @@ function renderHighScoreScreen() {
             //append new list element to html
             highScoreScreenHTML+= `<li data-index=${i}>${singleScore.initials}: ${singleScore.score}</li>`
         };
+        //display 'no scores' message if localStorage is empty (localStorage.length is 0)
+        if (localStorage.length===0){
+            highScoreScreenHTML+= `<p id="noScores">No scores to display.</p>`;
+        }
     //append list end tag to html
     highScoreScreenHTML+= `</ul>`; 
     // set body to score screen html   
