@@ -2,6 +2,7 @@
 let totalTime=questions.length*10;
 let secondsLeft=totalTime;
 let timerInterval;
+let feedbackInterval;
 let quizScore=0;
 let questionIndex=0;
 let wrongAnswers=0;
@@ -87,14 +88,24 @@ function quizTimer() {
     }, 1000);
 }
 
+
 // render answer feedback
 function answerFeedback(message) {
-    console.log(message);
+    //get feedback element
     let feedbackEl=document.querySelector("#feedback");
-    feedbackEl.textContent=message;
-    feedbackInterval = setInterval(function () {
-        feedbackEl.textContent="";
+    //clear feedback / timer function
+    function clearFeedback() {
+        //clear existing timer and feedback txt
         clearInterval(feedbackInterval);
+        feedbackEl.textContent="";
+    }
+    clearFeedback();
+    //set the feedback element to the message
+    feedbackEl.textContent=message;
+    console.log(message);
+    //clear the feeedback element after 1500ms
+    feedbackInterval = setInterval(function () {
+        clearFeedback();
     }, 1500);
 }
 
@@ -231,7 +242,7 @@ function startCodeQuiz(event) {
                 answerFeedback("Correct!");
             } else {
                 //negative answer feedback to screen
-                answerFeedback("Correct!");
+                answerFeedback("Incorrect!");
                 //increment wrongAnswers
                 wrongAnswers++;
             }
