@@ -105,7 +105,9 @@ function answerFeedback(message) {
     }
     clearFeedback();
     //set the feedback element to the message
-    feedbackEl.textContent=message;
+    feedbackEl.textContent=message.toUpperCase()+"!";
+    //set feedback element class to message
+    feedbackEl.className=message;
     console.log(message);
     //clear the feeedback element after 1500ms
     feedbackInterval = setInterval(function () {
@@ -261,10 +263,10 @@ function startCodeQuiz(event) {
             //evaluate answer
             if (event.target.textContent===questions[questionIndex].answer){
                 //positive answer feedback to screen
-                answerFeedback("Correct!");
+                answerFeedback("correct");
             } else {
                 //negative answer feedback to screen
-                answerFeedback("Incorrect!");
+                answerFeedback("incorrect");
                 //increment wrongAnswers
                 wrongAnswers++;
             }
