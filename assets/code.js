@@ -124,14 +124,17 @@ function renderEndScreen(){
     currentScreen="endScreen";
     //log screen state
     console.log(currentScreen);
-    //html with final score and high score initials prompt
-    const doneScreenHTML = `
+    //html with final score and condition for high score initials prompt
+    let doneScreenHTML = `
         <h1>All Done</h1>
         <p>Time Remaining: ${secondsLeft}s<br>
         Incorrect Answers: ${wrongAnswers}<br>
         Time Penalty: -${wrongAnswers*timePenalty}s<br>
         Your Final Score Is: ${quizScore}</p>
         <hr>
+        `;
+    if (quizScore>0){
+        doneScreenHTML+=`
         <form>
             <div id="inputWrap">
             <label for="player-initials">Enter your initials: </label><br>
@@ -140,41 +143,48 @@ function renderEndScreen(){
             <div class="button">
             <button id="scoreSubmit" type="submit">Submit Score</button>
             </div>   
-        </form>    
-        `;  
+        </form>  
+        `;
+    } else {
+        doneScreenHTML+=`
+        <p>Better Luck Next Time</p>
+        `
+    }
     // set quizEl to end screen html   
     let quizEl=document.querySelector("#quiz"); 
     quizEl.innerHTML=doneScreenHTML;
     //hide answer feedback div
     let feedbackEl=document.querySelector("#feedback");
     feedbackEl.className="hidden";
-    //high score submit button event listener to save initials and score to local storage
-    let submitEl=document.querySelector("#scoreSubmit"); 
-    submitEl.addEventListener("click", function(event) {
-        event.preventDefault();
-        //get initials input and makes uppercase. 
-        let initialVal=document.querySelector("#player-initials").value.toUpperCase();
-        //validate initials input (alpha chars only)
-        if (initialVal.match(/^[A-Za-z]+$/)){
-            //create scoreData object
-            let scoreData= {
-                initials: initialVal, 
-                score: quizScore
-            };
-            //serialize score object for localStorage
-            let scoreDataSerial=JSON.stringify(scoreData);
-            console.log(scoreDataSerial);
-            //create key value for localStorage (scoreIndex#)
-            let scoreIndex="scoreIndex"+window.localStorage.length;
-            //write to localStorage
-            window.localStorage.setItem(scoreIndex, scoreDataSerial);
-            //render high score screen
-            renderHighScoreScreen();
-        //invalid form input condition
-        }else {
-            alert("Please enter valid initials.");
-        }
-    });
+    //high score submit button event listener to save initials and score to local storage if score >0
+    if (quizScore>0){
+        let submitEl=document.querySelector("#scoreSubmit"); 
+        submitEl.addEventListener("click", function(event) {
+            event.preventDefault();
+            //get initials input and makes uppercase. 
+            let initialVal=document.querySelector("#player-initials").value.toUpperCase();
+            //validate initials input (alpha chars only)
+            if (initialVal.match(/^[A-Za-z]+$/)){
+                //create scoreData object
+                let scoreData= {
+                    initials: initialVal, 
+                    score: quizScore
+                };
+                //serialize score object for localStorage
+                let scoreDataSerial=JSON.stringify(scoreData);
+                console.log(scoreDataSerial);
+                //create key value for localStorage (scoreIndex#)
+                let scoreIndex="scoreIndex"+window.localStorage.length;
+                //write to localStorage
+                window.localStorage.setItem(scoreIndex, scoreDataSerial);
+                //render high score screen
+                renderHighScoreScreen();
+            //invalid form input condition
+            }else {
+                alert("Please enter valid initials.");
+            }
+        });
+    }
 }
 
 //high score screen
