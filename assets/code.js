@@ -58,7 +58,7 @@ function renderStartScreen(){
     if (gameInProgress){
         startPageHTML+=`Resume Quiz </button>`
     } else {
-        startPageHTML+=`Start Quiz </button>`
+        startPageHTML+=`Begin Quiz </button>`
     }
     //hide answer feedback div
     let feedbackEl=document.querySelector("#feedback");
