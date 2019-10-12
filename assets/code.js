@@ -68,8 +68,10 @@ function renderStartScreen(){
 
 //quiz timer
 function quizTimer() {
+    //reinitialize Timer
     secondsLeft=totalTime;
     //update seconds left in html
+    renderHeader();
     timerInterval = setInterval(function () {
         //decrement seconds
         secondsLeft--;
