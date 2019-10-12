@@ -44,7 +44,11 @@ p, #highScoresList {
     color:rgb(20, 224, 20);
     margin: 1em 0em 0em 0em;
 }
+#feedback.correct {
+    display:static;
+}
 #feedback.incorrect {
+    display:static;
     height:1em;
     color:rgb(255, 0, 0);
     margin: 1em 0em 0em 0em;
@@ -89,6 +93,12 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+.hidden {
+    display:none;
+}
+.uhidden {
+    display:static;
 }
 /* responsive styles */
 @media only screen and (max-width: 650px) {

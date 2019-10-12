@@ -59,6 +59,9 @@ function renderStartScreen(){
     } else {
         startPageHTML+=`Start Quiz </button>`
     }
+    //hide answer feedback div
+    let feedbackEl=document.querySelector("#feedback");
+    feedbackEl.className="hidden";
     //set quizEl to start screen html
     let quizEl=document.querySelector("#quiz");
     quizEl.innerHTML=startPageHTML;
@@ -216,6 +219,9 @@ function renderHighScoreScreen() {
     // set quizEl to score screen html   
     let quizEl=document.querySelector("#quiz"); 
     quizEl.innerHTML=highScoreScreenHTML;    
+    //hide answer feedback div
+    let feedbackEl=document.querySelector("#feedback");
+    feedbackEl.className="hidden";
     // event listener for clearScores button
     let clearScoresEl=document.querySelector("#clearScores");
     clearScoresEl.addEventListener("click", function(){
@@ -239,6 +245,9 @@ function startCodeQuiz(event) {
     currentScreen="quizScreen";
     //log screen state
     console.log(currentScreen);
+    //show answer feedback div
+    let feedbackEl=document.querySelector("#feedback");
+    feedbackEl.className="unhidden";
     //loadQuestion function       
     function loadQuestion(){    
         //quiz html template
