@@ -126,10 +126,10 @@ function renderEndScreen(){
         Incorrect Answers: ${wrongAnswers}<br>
         Time Penalty: -${wrongAnswers*timePenalty}s<br>
         Your Final Score Is: ${quizScore}</p>
-
+        <hr>
         <form>
-            <div>
-            <label for="player-initials">Enter your initials: </label>
+            <div id="inputWrap">
+            <label for="player-initials">Enter your initials: </label><br>
             <input type="text" maxlength="3" id="player-initials" name="player-initials">
             </div>
             <div class="button">
@@ -242,7 +242,7 @@ function startCodeQuiz(event) {
         //quiz html template
         const codeQuizHTML = `
             <h1>Question ${questionIndex + 1}</h1>
-            <p>${questions[questionIndex].title}</p>
+            <p id="question">${questions[questionIndex].title}</p>
             <ul id="answers">
             <li><button type="button">${questions[questionIndex].choices[0]}</button></li>
             <li><button type="button">${questions[questionIndex].choices[1]}</button></li>
