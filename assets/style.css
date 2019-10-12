@@ -90,3 +90,21 @@ ul {
     margin: 0;
     padding: 0;
 }
+/* responsive styles */
+@media only screen and (max-width: 650px) {
+    #container {
+        margin: 2em auto;
+        padding: 1em 1em;
+    }
+    #header li{
+        display:block;
+    }
+    button {
+        width:100%;
+        margin: .3em 0em .3em 0em;
+        padding: .5em 0em;
+    }
+    button.nav {
+        width:100%;
+    }
+}
