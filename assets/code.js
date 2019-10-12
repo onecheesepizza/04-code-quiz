@@ -1,5 +1,6 @@
 //global vars
-let totalTime=questions.length*10;
+const totalTime=questions.length*15;
+const timePenalty=15;
 let secondsLeft=totalTime;
 let timerInterval;
 let feedbackInterval;
@@ -68,6 +69,7 @@ function renderStartScreen(){
 //quiz timer
 function quizTimer() {
     secondsLeft=totalTime;
+    //update seconds left in html
     timerInterval = setInterval(function () {
         //decrement seconds
         secondsLeft--;
@@ -117,14 +119,18 @@ function renderEndScreen(){
     //html with final score and high score initials prompt
     const doneScreenHTML = `
         <h1>All Done</h1
-        <p>Your final score is: ${quizScore}</p>
+        <p>Time Remaining: ${secondsLeft}s<br>
+        Incorrect Answers: ${wrongAnswers}<br>
+        Time Penalty: -${wrongAnswers*timePenalty}s<br>
+        Your Final Score Is: ${quizScore}</p>
+
         <form>
             <div>
             <label for="player-initials">Enter your initials: </label>
             <input type="text" maxlength="3" id="player-initials" name="player-initials">
             </div>
             <div class="button">
-            <button id="scoreSubmit" type="submit">Submit</button>
+            <button id="scoreSubmit" type="submit">Submit Score</button>
             </div>   
         </form>    
         `;  
@@ -269,10 +275,10 @@ function startCodeQuiz(event) {
                 //stop timer
                 clearInterval(timerInterval);
                 //calculate score
-                quizScore=secondsLeft-(wrongAnswers*10); 
+                quizScore=secondsLeft-(wrongAnswers*timePenalty); 
                 console.log("seconds left: "+secondsLeft);
                 console.log("wrong answers: "+wrongAnswers);
-                console.log("wrong answer penalty: "+wrongAnswers*10);
+                console.log("wrong answer penalty: -"+wrongAnswers*timePenalty);
                 console.log("final score: "+quizScore);
                 //fix negative scores
                 if (quizScore<0){
@@ -282,7 +288,7 @@ function startCodeQuiz(event) {
                 //reset game state
                 gameInProgress=false;
                 questionIndex=0;
-                secondsLeft=totalTime;
+                // secondsLeft=totalTime;
                 //end screen html
                 renderEndScreen();
             }
