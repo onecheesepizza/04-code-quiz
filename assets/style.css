@@ -1,0 +1,92 @@
+/* general styles */
+html {
+    background-color:black;
+    background-image: url('matrix.webp');
+    background-repeat:  no-repeat;
+    background-size:  cover;
+    background-position: center;
+    min-height: 100%;
+}
+body {
+    color:white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+}
+#container {
+    max-width:500px;
+    margin: 8em auto;
+    padding:2em 2em;
+    background-color:rgba(10, 10, 10, .95);
+    border:.1em solid rgb(172, 172, 172);
+}
+#container, button {
+    border-radius: .5em;
+}
+a {
+    color:white;
+    text-decoration: none;
+}
+p, #highScoresList {
+    color: rgb(168, 168, 168)
+}
+#header li{
+    display:inline-block;
+}
+#question {
+    height:3em;
+}
+#time {
+    display:inline-block;
+    margin: 1.5em 0em 0em 0em;
+}
+#feedback {
+    height:1em;
+    color:rgb(20, 224, 20);
+    margin: 1em 0em 0em 0em;
+}
+#feedback.incorrect {
+    height:1em;
+    color:rgb(255, 0, 0);
+    margin: 1em 0em 0em 0em;
+}
+#inputWrap {
+    margin:1em 0em;
+}
+input {
+    font-size:1.2em;
+    margin: .5em 0em;
+}
+/* clickable elements */
+button {
+    font-size:1em;
+    color:white;
+    background-color:black;
+    border:.1em solid white;
+    padding: .25em .5em .35em .5em;
+    margin: .25em 0em;
+}
+button.nav {
+    color: white;
+    border:.1em solid white;
+    margin: .25em .5em .25em 0em;
+    font-size:1em;
+}
+#startButton {
+    margin: 1em 0em 0em 0em;
+    font-size:1.2em;
+    color:rgb(137, 228, 137);
+    border-color:rgb(137, 228, 137);
+}
+#startButton:hover {
+    color:rgb(20, 224, 20);
+    border-color:rgb(20, 224, 20);
+}
+button:hover {
+    color:rgb(20, 224, 20);
+    border-color:rgb(20, 224, 20);
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
