@@ -121,7 +121,7 @@ function renderEndScreen(){
     console.log(currentScreen);
     //html with final score and high score initials prompt
     const doneScreenHTML = `
-        <h1>All Done</h1
+        <h1>All Done</h1>
         <p>Time Remaining: ${secondsLeft}s<br>
         Incorrect Answers: ${wrongAnswers}<br>
         Time Penalty: -${wrongAnswers*timePenalty}s<br>
@@ -241,7 +241,7 @@ function startCodeQuiz(event) {
     function loadQuestion(){    
         //quiz html template
         const codeQuizHTML = `
-            <h1>Question ${questionIndex + 1}</h1
+            <h1>Question ${questionIndex + 1}</h1>
             <p>${questions[questionIndex].title}</p>
             <ul id="answers">
             <li><button type="button">${questions[questionIndex].choices[0]}</button></li>
