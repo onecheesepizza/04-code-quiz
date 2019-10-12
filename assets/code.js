@@ -28,7 +28,7 @@ function renderHeader() {
     let headerHTML=`
         <ul><li><a href="#" id="startScreen">Start Screen</a></li>
         <li><a href="#" id="highScores">High Scores</a></li></ul>
-        <p id="time">Time: ${secondsLeft}</p>
+        <p id="time">Time: ${secondsLeft}s</p>
         `;
     //set header html
     let headerEl=document.querySelector("#header");
