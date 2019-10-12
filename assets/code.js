@@ -269,7 +269,10 @@ function startCodeQuiz(event) {
         let feedbackEl=document.querySelector("#feedback");
         //add event listener for answer selection that also runs answer evaluation
         let answersEl=document.querySelector("#answers");
-        answersEl.addEventListener("click", function(event) {
+        answersEl.addEventListener("click", evaluateAnswer);
+        function evaluateAnswer(event) {
+            //remove event listener to prevent accidental re-triggering evaluation before loading next question
+            answersEl.removeEventListener("click", evaluateAnswer);
             //evaluate answer
             if (event.target.textContent===questions[questionIndex].answer){
                 //positive answer feedback to screen
@@ -312,7 +315,7 @@ function startCodeQuiz(event) {
                 //end screen html
                 renderEndScreen();
             }
-        });
+        }
     }
     //first run of loadQuestion    
     loadQuestion();
