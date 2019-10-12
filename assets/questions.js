@@ -17,7 +17,7 @@ var questions = [
     {
         title: "Which of the following is related to version control?",
         choices: ["CSS", "WIFI", "GIT", "SSH"],
-        answer: "git"
+        answer: "GIT"
     },
     {
         title: "FALSE===FALSE evaluates to ____.",
