@@ -196,7 +196,8 @@ function renderHighScoreScreen() {
     //high score screen html
     let highScoreScreenHTML = `
         <h1>High Scores</h1>
-        <ul id="highScoresList">`
+        <table id="highScoresList">
+        `;
     //initialize unsorted score array
     let unsortedScore=[];
     //loop over high scores and generate list html, if localStorage.length is >0
@@ -218,7 +219,7 @@ function renderHighScoreScreen() {
     //display sorted scores to screen
     for (let i=0;i<sortedScore.length;i++){
         //append new list element to html
-        highScoreScreenHTML+=`<li data-index=${i}>${sortedScore[i].initials}: ${sortedScore[i].score}</li>`
+        highScoreScreenHTML+=`<tr data-index=${i}><td>${sortedScore[i].initials}</td><td class=score>${sortedScore[i].score}</td></tr>`
     }
     //display 'no scores' message if localStorage is empty (localStorage.length is 0)
     if (localStorage.length===0){
@@ -226,7 +227,7 @@ function renderHighScoreScreen() {
     }
     //append list end tag and clear button to html
     highScoreScreenHTML+= `
-        </ul>
+        </table>
         <br>
         <button type="button" id="clearScores">Clear Scores</button>
         `; 
