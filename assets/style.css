@@ -61,6 +61,9 @@ p, #highScoresList {
 input {
     font-size:1.2em;
     margin: .5em 0em;
+    width:6em;
+    text-align: center;
+    text-transform: uppercase;
 }
 /* clickable elements */
 button {
