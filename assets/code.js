@@ -231,6 +231,7 @@ function startCodeQuiz(event) {
     //starts timer if game is not already in progress
     if (gameInProgress===false){
         quizTimer();
+        wrongAnswers=0
     }
     //sets gameInProgress and currentScreen conditions to true
     gameInProgress=true;
@@ -288,7 +289,7 @@ function startCodeQuiz(event) {
                     quizScore=0;
                 }
                 console.log("non-negative final score: "+quizScore);
-                //reset game state
+                //set game state
                 gameInProgress=false;
                 questionIndex=0;
                 // secondsLeft=totalTime;
