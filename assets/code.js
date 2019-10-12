@@ -145,6 +145,9 @@ function renderEndScreen(){
     // set quizEl to end screen html   
     let quizEl=document.querySelector("#quiz"); 
     quizEl.innerHTML=doneScreenHTML;
+    //hide answer feedback div
+    let feedbackEl=document.querySelector("#feedback");
+    feedbackEl.className="hidden";
     //high score submit button event listener to save initials and score to local storage
     let submitEl=document.querySelector("#scoreSubmit"); 
     submitEl.addEventListener("click", function(event) {
@@ -295,25 +298,29 @@ function startCodeQuiz(event) {
                 // loadQuestion();
             //exit condition for end of questions   
             } else {
-                //stop timer
-                clearInterval(timerInterval);
-                //calculate score
-                quizScore=secondsLeft-(wrongAnswers*timePenalty); 
-                console.log("seconds left: "+secondsLeft);
-                console.log("wrong answers: "+wrongAnswers);
-                console.log("wrong answer penalty: -"+wrongAnswers*timePenalty);
-                console.log("final score: "+quizScore);
-                //fix negative scores
-                if (quizScore<0){
-                    quizScore=0;
-                }
-                console.log("non-negative final score: "+quizScore);
-                //set game state
-                gameInProgress=false;
-                questionIndex=0;
-                // secondsLeft=totalTime;
-                //end screen html
-                renderEndScreen();
+                //pause for ms value of nextQuestionPause before continuing
+                questionQueuePause = setInterval(function () {
+                    clearInterval(questionQueuePause);
+                    //stop timer
+                    clearInterval(timerInterval);
+                    //calculate score
+                    quizScore=secondsLeft-(wrongAnswers*timePenalty); 
+                    console.log("seconds left: "+secondsLeft);
+                    console.log("wrong answers: "+wrongAnswers);
+                    console.log("wrong answer penalty: -"+wrongAnswers*timePenalty);
+                    console.log("final score: "+quizScore);
+                    //fix negative scores
+                    if (quizScore<0){
+                        quizScore=0;
+                    }
+                    console.log("non-negative final score: "+quizScore);
+                    //set game state
+                    gameInProgress=false;
+                    questionIndex=0;
+                    // secondsLeft=totalTime;
+                    //end screen html
+                    renderEndScreen();
+                }, nextQuestionPause);
             }
         }
     }
