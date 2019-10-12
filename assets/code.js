@@ -14,9 +14,11 @@ let currentScreen="startScreen";
 function generateStructure(){
     let bodyEl=document.querySelector("body");
     bodyEl.innerHTML=`
-    <div id="header"></div>
-    <div id="quiz"></div>
-    <div id="feedback"></div>
+    <div id="container">
+        <div id="header"></div>
+        <div id="feedback"></div>
+        <div id="quiz"></div>
+    </div>
     `;
 }
 
@@ -91,7 +93,6 @@ function quizTimer() {
         }
     }, 1000);
 }
-
 
 // render answer feedback
 function answerFeedback(message) {
@@ -176,7 +177,7 @@ function renderHighScoreScreen() {
     console.log(currentScreen);
     //high score screen html
     let highScoreScreenHTML = `
-        <h1>High Scores</h1
+        <h1>High Scores</h1>
         <ul id="highScoresList">`
     //initialize unsorted score array
     let unsortedScore=[];
