@@ -1,7 +1,7 @@
 # 04-code-quiz
 ## Unit 04 Web APIs Homework: Code Quiz
 
-A responsive code quiz built with javascript, featuring DOM manipulation and persistent high scores via the browser's localStorage. 
+A responsive code quiz built with HTML, CSS, and Javascript, featuring DOM manipulation and persistent high scores via the browser's localStorage. 
 
 ![HTML5](https://img.shields.io/badge/HTML5-orange)
 ![CSS](https://img.shields.io/badge/CSS-blue)
