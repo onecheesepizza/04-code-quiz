@@ -16,8 +16,8 @@ function generateStructure(){
     bodyEl.innerHTML=`
     <div id="container">
         <div id="header"></div>
-        <div id="feedback"></div>
         <div id="quiz"></div>
+        <div id="feedback"></div>
     </div>
     `;
 }
