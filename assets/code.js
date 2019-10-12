@@ -1,6 +1,7 @@
 //global vars
 const totalTime=questions.length*15;
 const timePenalty=15;
+const nextQuestionPause=1000;
 let secondsLeft=totalTime;
 let timerInterval;
 let feedbackInterval;
@@ -115,7 +116,7 @@ function answerFeedback(message) {
     //clear the feeedback element after 1500ms
     feedbackInterval = setInterval(function () {
         clearFeedback();
-    }, 1500);
+    }, nextQuestionPause);
 }
 
 //render end screen 
@@ -283,7 +284,12 @@ function startCodeQuiz(event) {
             questionIndex++;
             //load next question if one exists (recursive)
             if (questionIndex<questions.length){
-                loadQuestion();
+                //pause for ms value of nextQuestionPause
+                questionQueuePause = setInterval(function () {
+                    clearInterval(questionQueuePause);
+                    loadQuestion();
+                }, nextQuestionPause);
+                // loadQuestion();
             //exit condition for end of questions   
             } else {
                 //stop timer
