@@ -26,8 +26,8 @@ function generateStructure(){
 function renderHeader() {
     //header html
     let headerHTML=`
-        <ul><li><a href="#" id="startScreen">Start Screen</a></li>
-        <li><a href="#" id="highScores">High Scores</a></li></ul>
+        <ul><li><button type="button" class="nav" id="startScreen">Start Screen</button></li>
+        <li><button type="button" class="nav" id="highScores">High Scores</button></li></ul>
         <p id="time">Time: ${secondsLeft}s</p>
         `;
     //set header html
