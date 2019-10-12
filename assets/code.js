@@ -87,7 +87,6 @@ function quizTimer() {
             //reset game state
             gameInProgress=false;
             questionIndex=0;
-            secondsLeft=totalTime;
             //render end screen
             renderEndScreen();
         }
