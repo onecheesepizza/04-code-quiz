@@ -94,6 +94,7 @@ function quizTimer() {
             //reset game state
             gameInProgress=false;
             questionIndex=0;
+            calcScore();
             //render end screen
             renderEndScreen();
         }
@@ -120,6 +121,19 @@ function answerFeedback(message) {
     feedbackInterval = setInterval(function () {
         clearFeedback();
     }, nextQuestionPause);
+}
+
+function calcScore(){
+    quizScore=secondsLeft-(wrongAnswers*timePenalty); 
+    console.log("seconds left: "+secondsLeft);
+                    console.log("wrong answers: "+wrongAnswers);
+                    console.log("wrong answer penalty: -"+wrongAnswers*timePenalty);
+                    console.log("final score: "+quizScore);                
+    //fix negative scores
+    if (quizScore<0){
+        quizScore=0;
+    }
+    console.log("non-negative final score: "+quizScore);
 }
 
 //render end screen 
@@ -318,16 +332,7 @@ function startCodeQuiz(event) {
                     //stop timer
                     clearInterval(timerInterval);
                     //calculate score
-                    quizScore=secondsLeft-(wrongAnswers*timePenalty); 
-                    console.log("seconds left: "+secondsLeft);
-                    console.log("wrong answers: "+wrongAnswers);
-                    console.log("wrong answer penalty: -"+wrongAnswers*timePenalty);
-                    console.log("final score: "+quizScore);
-                    //fix negative scores
-                    if (quizScore<0){
-                        quizScore=0;
-                    }
-                    console.log("non-negative final score: "+quizScore);
+                    calcScore();
                     //set game state
                     gameInProgress=false;
                     questionIndex=0;
