@@ -2,7 +2,7 @@
 const totalTime=questions.length*15;
 const timePenalty=15;
 const nextQuestionPause=1000;
-let secondsLeft=totalTime;
+let secondsLeft=0;
 let timerInterval;
 let feedbackInterval;
 let quizScore=0;
@@ -59,6 +59,9 @@ function renderStartScreen(){
         startPageHTML+=`Resume Quiz </button>`
     } else {
         startPageHTML+=`Begin Quiz </button>`
+        //if game is not running, make sure start screen shows a timer val of 0
+        secondsLeft=0;
+        renderHeader();
     }
     //hide answer feedback div
     let feedbackEl=document.querySelector("#feedback");
@@ -328,7 +331,6 @@ function startCodeQuiz(event) {
                     //set game state
                     gameInProgress=false;
                     questionIndex=0;
-                    // secondsLeft=totalTime;
                     //end screen html
                     renderEndScreen();
                 }, nextQuestionPause);
