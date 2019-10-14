@@ -30,4 +30,3 @@ var questions = [
         answer: "Javascript"
     },
 ];
-// sample questions

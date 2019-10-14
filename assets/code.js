@@ -123,7 +123,9 @@ function answerFeedback(message) {
     }, nextQuestionPause);
 }
 
+//calculate score
 function calcScore(){
+    //subtrack time penalty from remaining time
     quizScore=secondsLeft-(wrongAnswers*timePenalty); 
     console.log("seconds left: "+secondsLeft);
                     console.log("wrong answers: "+wrongAnswers);
